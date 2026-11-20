@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NodeVX</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="sb-head">
+        <div class="ws-badge">N</div>
+        <div class="ws-name">Mi espacio</div>
+        <button class="icon-btn" id="btn-collapse" title="Ocultar barra lateral (Ctrl+\)">«</button>
+      </div>
+      <nav class="sb-actions">
+        <button class="sb-item" id="btn-search"><span class="sb-ic">🔍</span>Buscar<kbd>Ctrl K</kbd></button>
+        <button class="sb-item" id="btn-quick"><span class="sb-ic">⚡</span>Notas rápidas<kbd>Alt N</kbd></button>
+        <button class="sb-item" id="btn-settings"><span class="sb-ic">⚙️</span>Ajustes</button>
+        <button class="sb-item" id="btn-newpage"><span class="sb-ic">＋</span>Nueva página<kbd>Alt P</kbd></button>
+      </nav>
+      <div class="sb-scroll">
+        <div class="sb-section" id="fav-section">
+          <div class="sb-title">Favoritos</div>
+          <div id="fav-list"></div>
+        </div>
+        <div class="sb-section">
+          <div class="sb-title" id="pages-title">Páginas <button class="icon-btn sm" id="btn-add-root" title="Añadir página">＋</button></div>
+          <div id="page-tree"></div>
+        </div>
+      </div>
+      <div class="sb-foot">
+        <button class="sb-item" id="btn-trash"><span class="sb-ic">🗑️</span>Papelera</button>
+      </div>
+      <div class="sb-resizer" id="sb-resizer"></div>
+    </aside>
+
+    <main id="main">
+      <header id="topbar">
+        <button class="icon-btn" id="btn-expand" title="Mostrar barra lateral (Ctrl+\)">☰</button>
+        <div id="breadcrumbs"></div>
+        <div class="top-right">
+          <span id="save-status" class="muted"></span>
+          <button class="top-btn" id="btn-fav" title="Favorito">☆</button>
+          <button class="top-btn" id="btn-quick2" title="Notas rápidas (Alt+N)">⚡ Borrador</button>
+          <button class="top-btn" id="btn-more" title="Más opciones">⋯</button>
+        </div>
+      </header>
+      <div id="scroller">
+        <div id="page"></div>
+      </div>
+    </main>
+
+    <aside id="quicknotes" aria-label="Notas rápidas">
+      <div class="qn-head">
+        <div class="qn-title">⚡ Notas rápidas <span class="qn-sub">borrador local</span></div>
+        <span id="qn-status" class="muted"></span>
+        <button class="icon-btn" id="qn-close" title="Cerrar (Esc)">✕</button>
+      </div>
+      <div class="qn-tabs" id="qn-tabs"></div>
+      <textarea id="qn-text" spellcheck="true" placeholder="Escribe lo que sea… se guarda automáticamente en tu equipo."></textarea>
+      <div class="qn-foot">
+        <span id="qn-count" class="muted"></span>
+        <div class="qn-actions">
+          <button class="btn" id="qn-copy">Copiar</button>
+          <button class="btn" id="qn-convert">Convertir en página</button>
+          <button class="btn danger" id="qn-delete">Eliminar</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="format-bar" class="hidden">
+    <button data-cmd="bold" title="Negrita (Ctrl+B)"><b>B</b></button>
+    <button data-cmd="italic" title="Cursiva (Ctrl+I)"><i>i</i></button>
+    <button data-cmd="underline" title="Subrayado (Ctrl+U)"><u>U</u></button>
+    <button data-cmd="strikeThrough" title="Tachado (Ctrl+Shift+S)"><s>S</s></button>
+    <button data-cmd="code" title="Código (Ctrl+E)"><code>&lt;/&gt;</code></button>
+    <button data-cmd="link" title="Enlace (Ctrl+Shift+K)">🔗</button>
+    <span class="sep"></span>
+    <button data-color="" title="Color predeterminado" class="sw">A</button>
+    <button data-color="#d44c47" title="Rojo" class="sw" style="color:#d44c47">A</button>
+    <button data-color="#d9730d" title="Naranja" class="sw" style="color:#d9730d">A</button>
+    <button data-color="#448361" title="Verde" class="sw" style="color:#448361">A</button>
+    <button data-color="#337ea9" title="Azul" class="sw" style="color:#337ea9">A</button>
+    <button data-color="#9065b0" title="Morado" class="sw" style="color:#9065b0">A</button>
+    <button data-hl="#fbf3db" title="Resaltar" class="sw hl">A</button>
+  </div>
+
+  <div id="overlay-root"></div>
+  <div id="toast" class="hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
